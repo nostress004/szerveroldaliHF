@@ -1,61 +1,12 @@
 <% include header %>
-<!-- Register -->
     <main>
         <div class="container">
             <table class="highlight" style="margin-top:50px; border-style: groove">
-
+            
                 <tbody>
-                    <tr>
-                        <td style="width: 10%">Pizza 1</td>
-                        <td style="width: 20%">
-                            <img src="images/220px-Eq_it-na_pizza-margherita_sep2005_sml.jpg">
-                        </td>
-                        <td style="width: 50%">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                            sunt in culpa qui officia deserunt mollit anim id est laborum."</td>
-                        <td style="width: 10%">
-                            <a class="waves-effect blue-grey btn">Edit</a>
-                        </td>
-                        <td style="width: 10%">
-                            <a class="waves-effect red btn">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Pizza 2</td>
-                        <td>
-                            <img src="images/220px-Eq_it-na_pizza-margherita_sep2005_sml.jpg">
-                        </td>
-                        <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                            sunt in culpa qui officia deserunt mollit anim id est laborum."</td>
-                        <td style="width: 10%">
-                            <a class="waves-effect blue-grey btn">Edit</a>
-                        </td>
-                        <td style="width: 10%">
-                            <a class="waves-effect red btn">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Pizza 2</td>
-                        <td>
-                            <img src="images/220px-Eq_it-na_pizza-margherita_sep2005_sml.jpg">
-                        </td>
-                        <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                            sunt in culpa qui officia deserunt mollit anim id est laborum."</td>
-                        <td style="width: 10%">
-                            <a class="waves-effect blue-grey btn">Edit</a>
-                        </td>
-                        <td style="width: 10%">
-                            <a class="waves-effect red btn">Delete</a>
-                        </td>
-                    </tr>
+                    <% pizzas.forEach(function(pizza) { %>
+                        <% include pizzaitem %>
+                    <% }); %>
                 </tbody>
             </table>
 

@@ -1,4 +1,8 @@
 const renderMW = require('../middlewares/generic/render');
+
+// mock data
+const data = require('../mockData/data');
+
 module.exports = function(app) {
   // /**
   //  * Add new menu
@@ -35,10 +39,12 @@ module.exports = function(app) {
   //  * List all menu
   //  */
 
-  app.get('/menu',
-  (req, res, next) => {
-    res.tpl.songs = ['1231','asddasdas'];
-    next();
-  },
-  renderMW({}, "menulist"));
+  app.get(
+    '/menu',
+    (req, res, next) => {
+      res.tpl.pizzas = data.pizzas;
+      next();
+    },
+    renderMW({}, 'menulist')
+  );
 };
