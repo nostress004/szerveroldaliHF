@@ -1,22 +1,40 @@
 var express = require('express');
 var path = require('path');
 var app = express();
+var session = require('express-session');
+var bodyParser = require('body-parser');
 
 // Define the port to run on
 app.set('port', 3000);
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
+require('./models/user');
+require('./models/pizza');
+
+app.use(
+  session({
+    secret: 'dmpn24',
+    cookie: {
+      maxAge: 60 * 1000
+    },
+    resave: true,
+    saveUninitialized: false
+  })
+);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 /**
  * Let's creat the .tpl and .error on the res object
  */
-app.use(function (req, res, next) {
-    res.tpl = {};
-    res.tpl.error = [];
-  
-    return next();
-  });
+app.use(function(req, res, next) {
+  res.tpl = {};
+  res.tpl.error = [];
 
+  return next();
+});
 
 /**
  * Include all the routes
@@ -24,8 +42,6 @@ app.use(function (req, res, next) {
 require('./routes/general')(app);
 require('./routes/menulist')(app);
 require('./routes/orderlist')(app);
-
-
 
 // Routes
 // GET    '/home' home page
@@ -64,6 +80,6 @@ require('./routes/orderlist')(app);
 
 // Listen for requests
 var server = app.listen(app.get('port'), () => {
-    var port = server.address().port;
-    console.log('Listening on:' + port);
+  var port = server.address().port;
+  console.log('Listening on:' + port);
 });
