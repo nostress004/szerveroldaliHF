@@ -1,43 +1,16 @@
 const renderMW = require('../middlewares/generic/render');
-
+const authMW = require('../middlewares/generic/render');
+const addNewPIzza = require('../middlewares/generic/render');
+const redirectMW = require('../middlewares/generic/render');
 // mock data
 const data = require('../mockData/data');
 
+const pizzaModel = require('../models/pizza');
+
 module.exports = function(app) {
-  // /**
-  //  * Add new menu
-  //  */
-
-  // app.use('/menu/:menuid/new');
-
-  // /**
-  //  * View menu
-  //  */
-
-  // app.use('/menu/:menuid/view');
-
-  // /**
-  //  * Edit the menu details
-  //  */
-
-  // app.use('/menu/:menuid/edit');
-
-  // /**
-  //  * Order  menu item
-  //  */
-
-  // app.use('/menu/:menuid/order');
-
-  // /**
-  //  * Delete menuitem
-  //  * - then redirect to /employees
-  //  */
-
-  // app.use('/menu/:menuid/delete');
-
-  // /**
-  //  * List all menu
-  //  */
+  let obejectRepository = {
+    pizzaModel
+  };
 
   app.get(
     '/menu',
@@ -46,5 +19,29 @@ module.exports = function(app) {
       next();
     },
     renderMW({}, 'menulist')
+  );
+
+  app.get(
+    '/add',
+    (req, res, next) => {
+      res.tpl.pizzas = data.pizzas;
+      next();
+    },
+    renderMW({}, 'add')
+  );
+  app.post(
+    '/pizza/add',
+    authMW(obejectRepository),
+    addNewPIzza(obejectRepository),
+    redirectMW('/menu')
+  );
+
+  app.get(
+    '/admin-menu',
+    (req, res, next) => {
+      res.tpl.pizzas = data.pizzas;
+      next();
+    },
+    renderMW({}, 'admin-menu')
   );
 };

@@ -31,6 +31,14 @@ module.exports = function(app) {
   /**
    * Main page
    */
+
+  app.use(
+    '/home',
+    inverseAuthMW(objectRepository),
+    checkUserLoginMW(objectRepository),
+    renderMW(objectRepository, 'home')
+  );
+
   app.get('/logout', logoutMW(objectRepository), function(req, res, next) {
     res.redirect('/');
   });

@@ -2,11 +2,11 @@
     <main>
         <div class="container">
             <table class="highlight" style="margin-top:50px; border-style: groove">
-            
+
                 <tbody>
                     <% pizzas.forEach(function(pizza) { %>
-                        <% include pizzaitem %>
-                    <% }); %>
+                        <% include adminpizzaitem %>
+                            <% }); %>
                 </tbody>
             </table>
 
@@ -44,8 +44,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col s4">
-                    <a href="add.html" class="btn-floating btn-large green">
+                <div class="fixed-action-btn">
+                    <a href="/add" class="btn-floating btn-large green">
                         <i class="material-icons">add</i>
                     </a>
                 </div>
