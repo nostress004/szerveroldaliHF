@@ -1,5 +1,5 @@
 <% include header %>
-<!-- Login -->
+    <!-- Login -->
     <main>
         <div class="container">
             <div class="row">
@@ -7,37 +7,31 @@
                     <div class="card blue-grey darken-1 center-align">
                         <div class="card-content white-text">
                             <span class="card-title">Login</span>
-                            <form action="" method="post">
-                                <div class='row'>
-                                    <form class="col s12">
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <i class="material-icons prefix">account_circle</i>
-                                                <input id="icon_prefix" type="text" class="validate">
-                                                <label for="icon_prefix">Username</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <i class="material-icons prefix">vpn_key</i>
-                                                <input id="icon_prefix" type="text" class="validate">
-                                                <label for="icon_prefix">Password</label>
-                                            </div>
-                                        </div>
-                                    </form>
+                            <form action="/login" method="POST">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">email</i>
+                                        <input name="email" id="icon_prefix" type="text" class="validate">
+                                        <label for="icon_prefix">E-mail</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">vpn_key</i>
+                                        <input name="password" id="icon_prefix" type="password" class="validate">
+                                        <label for="icon_prefix">Password</label>
+                                    </div>
                                 </div>
-                                <hr>
-
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" value="">Remember me</label>
-
                                 <div class="card-action">
-                                    <a class="waves-effect blue btn-large" href="index.html">Login</a>
-                                    <a class="waves-effect red btn-large" href="forgotten.html">Forgotten password</a>
+                                    <input class="waves-effect blue btn-large" type="submit" value="login" />
+                                    <a class="waves-effect red btn-large" href="/forgotten">Forgotten password</a>
                                 </div>
-
                             </form>
                         </div>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" value="">Remember me</label>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
     </main>
     <% include footer %>

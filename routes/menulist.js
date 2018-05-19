@@ -2,6 +2,8 @@ const renderMW = require('../middlewares/generic/render');
 const authMW = require('../middlewares/generic/render');
 const addNewPIzza = require('../middlewares/generic/render');
 const redirectMW = require('../middlewares/generic/render');
+
+const updateMenuItemMW = require('../middlewares/menu/updateMenuItem');
 // mock data
 const data = require('../mockData/data');
 
@@ -32,7 +34,7 @@ module.exports = function(app) {
   app.post(
     '/pizza/add',
     authMW(obejectRepository),
-    addNewPIzza(obejectRepository),
+    updateMenuItemMW(obejectRepository),
     redirectMW('/menu')
   );
 

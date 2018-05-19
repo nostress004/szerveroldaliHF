@@ -39,7 +39,7 @@ module.exports = function(objectrepository) {
         req.session.userid = result._id;
 
         //redirect to / so the app can decide where to go next
-        return res.redirect('/');
+        return res.redirect('/menu');
       }
     );
   };

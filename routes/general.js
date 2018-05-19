@@ -52,4 +52,15 @@ module.exports = function(app) {
     checkUserRegistrationMW(objectRepository),
     renderMW(objectRepository, 'register')
   );
+
+  /**
+   * Forgotten Password
+   */
+
+  app.use(
+    '/forgotten',
+    inverseAuthMW(objectRepository),
+    checkUserRegistrationMW(objectRepository),
+    renderMW(objectRepository, 'forgotten')
+  );
 };

@@ -1,9 +1,37 @@
-/**
- * Update the menuitem
- */
+const requireOption = require('../common').requireOption;
 
-module.exports = function(objectrepository) {
-  return function(req, res, next) {
-    return next();
+/**
+ * Create (or update) pizza
+ */
+module.exports = objectrepository => {
+  let pizzaModel = requireOption(objectrepository, 'pizzaModel');
+
+  return (req, res, next) => {
+    console.log('updatePizzaItemMW');
+    if (
+      typeof req.body.name === 'undefined' ||
+      typeof req.body.description === 'undefined' ||
+      typeof req.body.price === 'undefined'
+    ) {
+      return next();
+    }
+
+    let pizza = undefined;
+    if (typeof res.tpl.pizza !== 'undefined') {
+      pizza = res.tpl.pizza;
+    } else {
+      pizza = new pizzaModel();
+    }
+    pizza.name = req.body.name;
+    pizza.description = req.body.description;
+    pizza.price = req.body.price;
+
+    pizza.save((err, result) => {
+      if (err) {
+        return next(err);
+      }
+
+      return res.redirect('/menu/');
+    });
   };
 };
