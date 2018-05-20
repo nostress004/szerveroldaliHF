@@ -31,11 +31,12 @@ module.exports = function(app) {
     },
     renderMW({}, 'add')
   );
+
   app.post(
-    '/pizza/add',
+    '/add',
     authMW(obejectRepository),
     updateMenuItemMW(obejectRepository),
-    redirectMW('/menu')
+    renderMW({}, 'add')
   );
 
   app.get(

@@ -6,6 +6,7 @@ const requireOption = require('../common').requireOption;
 module.exports = objectrepository => {
   let pizzaModel = requireOption(objectrepository, 'pizzaModel');
 
+  console.log('updatemenuitemMW');
   return (req, res, next) => {
     console.log('updatePizzaItemMW');
     if (
@@ -30,8 +31,7 @@ module.exports = objectrepository => {
       if (err) {
         return next(err);
       }
-
-      return res.redirect('/menu/');
+      return res.redirect('/admin-menu');
     });
   };
 };

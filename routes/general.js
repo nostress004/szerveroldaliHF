@@ -5,6 +5,7 @@ var authMW = require('../middlewares/generic/auth');
 var logoutMW = require('../middlewares/generic/logout');
 var checkUserLoginMW = require('../middlewares/user/checkUserLogin');
 var checkUserRegistrationMW = require('../middlewares/user/checkUserRegistration');
+const sendPasswordMW = require('../middlewares/generic/forgottenPassword');
 
 var userModel = require('../models/user');
 
@@ -60,7 +61,7 @@ module.exports = function(app) {
   app.use(
     '/forgotten',
     inverseAuthMW(objectRepository),
-    checkUserRegistrationMW(objectRepository),
+    sendPasswordMW(objectRepository),
     renderMW(objectRepository, 'forgotten')
   );
 };
