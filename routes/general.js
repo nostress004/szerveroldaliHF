@@ -36,7 +36,6 @@ module.exports = function(app) {
   app.use(
     '/home',
     inverseAuthMW(objectRepository),
-    checkUserLoginMW(objectRepository),
     renderMW(objectRepository, 'home')
   );
 

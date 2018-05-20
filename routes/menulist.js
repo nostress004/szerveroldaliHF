@@ -1,9 +1,9 @@
 const renderMW = require('../middlewares/generic/render');
-const authMW = require('../middlewares/generic/render');
-const addNewPIzza = require('../middlewares/generic/render');
-const redirectMW = require('../middlewares/generic/render');
-
+const authMW = require('../middlewares/generic/auth');
+const redirectMW = require('../middlewares/generic/mainRedirect');
+const checkUserLoginMW = require('../middlewares/user/checkUserLogin');
 const updateMenuItemMW = require('../middlewares/menu/updateMenuItem');
+
 // mock data
 const data = require('../mockData/data');
 

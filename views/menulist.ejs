@@ -4,12 +4,17 @@
         <ul>
         </ul>
     <div class="container ">
-        <table class="highlight" style="margin-top:50px; border-style: groove">
+        <table  class="highlight" style="margin-top:50px; border-style: groove">
 
             <tbody>
+
             <% pizzas.forEach(function(pizza) { %>
-                <% include pizzaitem %>
-            <% }); %>
+                <div class="card-stacked">
+                    <div class="card-content white-text">
+                        <% include pizzaitem %>
+                    </div>
+                </div>
+            <% )} %>
             </tbody>
         </table>
     </div>

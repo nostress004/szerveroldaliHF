@@ -5,6 +5,7 @@
  * @returns {*}
  */
 function requireOption(objectRepository, propertyName) {
+  console.log(objectRepository, propertyName);
   if (objectRepository && objectRepository[propertyName]) {
     return objectRepository[propertyName];
   }
