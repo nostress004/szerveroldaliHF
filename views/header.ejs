@@ -23,9 +23,9 @@
     <!-- Header -->
     <nav>
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo" style="margin-left:20px">Restaurant</a>
+            <a href="/home" class="brand-logo" style="margin-left:20px">Restaurant</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <% if (false) {%>
+            <% if (!user) {%>
                     <li>
                         <a href="/login">Login</a>
                     </li>
@@ -41,13 +41,19 @@
                     <a href="/menu">Menu</a>
                 </li>
                 <li>
-                    <a href="/admin-menu">Admin menu</a>
+                    <a href="/admin-menu">Menu (Admin)</a>
                 </li>
                 <li>
-                    <a href="/orders">Orders</a>
+                    <a href="/users">Users (Admin)</a>
                 </li>
                 <li>
-                    <a href="/logout">Log out</a>
+                    <a class="black-text" href="/cart">Cart</a>
+                </li>
+                <li>
+                    <a class="black-text" href="/profile">Profile</a>
+                </li>
+                <li>
+                    <a class="waves-effect red darken-1 btn-small black-text" href="/logout">Log out</a>
                 </li>
                 <% } %>
             </ul>

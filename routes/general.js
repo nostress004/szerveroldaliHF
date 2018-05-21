@@ -30,18 +30,23 @@ module.exports = function(app) {
   );
 
   /**
+   * Logout page
+   */
+  app.use(
+    '/logout',
+    logoutMW(objectRepository),
+    mainRedirectMW(objectRepository)
+  );
+
+  /**
    * Main page
    */
 
   app.use(
     '/home',
-    inverseAuthMW(objectRepository),
+    authMW(objectRepository),
     renderMW(objectRepository, 'home')
   );
-
-  app.get('/logout', logoutMW(objectRepository), function(req, res, next) {
-    res.redirect('/');
-  });
 
   /**
    * Registration

@@ -6,9 +6,7 @@ const requireOption = require('../common').requireOption;
 module.exports = objectrepository => {
   let pizzaModel = requireOption(objectrepository, 'pizzaModel');
 
-  console.log('updatemenuitemMW');
   return (req, res, next) => {
-    console.log('updatePizzaItemMW');
     if (
       typeof req.body.name === 'undefined' ||
       typeof req.body.description === 'undefined' ||

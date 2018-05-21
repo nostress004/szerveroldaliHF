@@ -11,6 +11,7 @@ app.set('view engine', 'ejs');
 
 require('./models/user');
 require('./models/pizza');
+require('./models/order');
 
 app.use(
   session({
@@ -42,6 +43,7 @@ app.use(function(req, res, next) {
 require('./routes/general')(app);
 require('./routes/menulist')(app);
 require('./routes/orderlist')(app);
+require('./routes/userlist')(app);
 
 // Routes
 // GET    '/home' home page

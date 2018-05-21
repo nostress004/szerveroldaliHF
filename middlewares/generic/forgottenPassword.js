@@ -1,14 +1,12 @@
 const nodemailer = require('nodemailer');
 const requireOption = require('../common').requireOption;
-
 /**
- * Sends forgotten pawwword to user
+ * Sends forgotten password to user
  */
 module.exports = objectrepository => {
   let userModel = requireOption(objectrepository, 'userModel');
 
   return (req, res, next) => {
-    console.log('sendPasswordMW1');
     if (
       !req.body.forgottenemail ||
       req.body.forgottenemail === 'undefined' ||
@@ -16,13 +14,11 @@ module.exports = objectrepository => {
     ) {
       return next();
     }
-    console.log('sendPasswordMW2');
     userModel.findOne({ email: req.body.forgottenemail }, (err, result) => {
       if (err || result == null) {
         res.tpl.error.push('This email address is not registered!');
         return next();
       }
-
       // create reusable transporter object using the default SMTP transport
       const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -32,7 +28,6 @@ module.exports = objectrepository => {
         }
       });
 
-      console.log(transporter);
       const mailOptions = {
         from: 'Pizza Restaurant',
         to: result.email,
@@ -41,7 +36,6 @@ module.exports = objectrepository => {
           result.password
         }.`
       };
-      console.log('asdasd1');
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
           console.log(error);

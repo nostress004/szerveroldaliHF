@@ -16,8 +16,7 @@ module.exports = function(objectrepository) {
       typeof req.body.email === 'undefined' ||
       typeof req.body.address === 'undefined' ||
       typeof req.body.phone === 'undefined' ||
-      typeof req.body.password1 === 'undefined' ||
-      typeof req.body.password2 === 'undefined'
+      typeof req.body.password1 === 'undefined'
     ) {
       return next();
     }
@@ -44,8 +43,7 @@ module.exports = function(objectrepository) {
         newUser.address = req.body.address;
         newUser.email = req.body.email;
         newUser.phone = req.body.phone;
-        newUser.password1 = req.body.password1;
-        newUser.password2 = req.body.password2;
+        newUser.password = req.body.password1;
         newUser.save(function(err) {
           //redirect to /login
           return res.redirect('/login');

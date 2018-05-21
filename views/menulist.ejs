@@ -1,20 +1,18 @@
 <% include header %>
 <!-- Register -->
    <main>
-        <ul>
-        </ul>
-    <div class="container ">
+    <div class="container">
         <table  class="highlight" style="margin-top:50px; border-style: groove">
 
             <tbody>
 
-            <% pizzas.forEach(function(pizza) { %>
-                <div class="card-stacked">
-                    <div class="card-content white-text">
+            <% if (pizzas.length) {%>
+                    <% pizzas.forEach(function(pizza) { %>
                         <% include pizzaitem %>
-                    </div>
-                </div>
-            <% )} %>
+                            <% }); %>
+                <% } else{ %>
+                <h2> We don't have any pizzas currently,<br> please visit us later!</h2>   
+                <% } %> 
             </tbody>
         </table>
     </div>

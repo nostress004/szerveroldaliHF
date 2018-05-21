@@ -13,18 +13,24 @@
                                         <div class="row">
                                             <div class="input-field col s12">
                                                 <i class="material-icons prefix">local_pizza</i>
-                                                <input name="name" id="icon_prefix" type="text" class="validate">
-                                                <label for="icon_prefix">Name</label>
+                                                <input name="name" type="text" class="validate" 
+                                                value=<% if (typeof pizza !== 'undefined' && pizza.name) { %>
+                                                "<%- (pizza.name) %>" <% } %>/>
+                                                <label for="name">Name</label>
                                             </div>
                                             <div class="input-field col s12">
                                                 <i class="material-icons prefix">gesture</i>
-                                                <input name="description" id="icon_telephone" type="text" class="validate">
-                                                <label for="icon_telephone">Description</label>
+                                                <input name="description" type="text" class="validate" 
+                                                value=<% if (typeof pizza !== 'undefined' && pizza.description) { %>
+                                                "<%- (pizza.description) %>" <% } %>/>
+                                                <label for="description">Description</label>
                                             </div>
                                             <div class="input-field col s12">
                                                 <i class="material-icons prefix">money</i>
-                                                <input name="price" id="icon_telephone" type="number" class="validate">
-                                                <label for="icon_telephone">Price</label>
+                                                <input name="price" type="number" class="validate"
+                                                value=<% if (typeof pizza !== 'undefined' && pizza.price) { %>
+                                                "<%- pizza.price; %>" <% } %>/>
+                                                <label for="price">Price</label>
                                             </div>
                                             <div class="card-action col s12">
                                                 <input class="waves-effect waves-light btn-large" type="submit" value="Add" />

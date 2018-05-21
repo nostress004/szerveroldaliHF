@@ -3,6 +3,8 @@ const authMW = require('../middlewares/generic/auth');
 const redirectMW = require('../middlewares/generic/mainRedirect');
 const checkUserLoginMW = require('../middlewares/user/checkUserLogin');
 const updateMenuItemMW = require('../middlewares/menu/updateMenuItem');
+const getMenuListMW = require('../middlewares/menu/getMenuList');
+const getMenuItemMW = require('../middlewares/menu/getMenuItem');
 
 // mock data
 const data = require('../mockData/data');
@@ -10,21 +12,21 @@ const data = require('../mockData/data');
 const pizzaModel = require('../models/pizza');
 
 module.exports = function(app) {
-  let obejectRepository = {
+  let objectRepository = {
     pizzaModel
   };
 
   app.get(
     '/menu',
-    (req, res, next) => {
-      res.tpl.pizzas = data.pizzas;
-      next();
-    },
+    authMW(objectRepository),
+    getMenuListMW(objectRepository),
     renderMW({}, 'menulist')
   );
 
+  // add new pizza item
   app.get(
     '/add',
+    authMW(objectRepository),
     (req, res, next) => {
       res.tpl.pizzas = data.pizzas;
       next();
@@ -34,17 +36,22 @@ module.exports = function(app) {
 
   app.post(
     '/add',
-    authMW(obejectRepository),
-    updateMenuItemMW(obejectRepository),
+    authMW(objectRepository),
+    updateMenuItemMW(objectRepository),
     renderMW({}, 'add')
   );
 
   app.get(
     '/admin-menu',
-    (req, res, next) => {
-      res.tpl.pizzas = data.pizzas;
-      next();
-    },
+    authMW(objectRepository),
+    getMenuListMW(objectRepository),
     renderMW({}, 'admin-menu')
+  );
+
+  app.get(
+    '/pizza/:id/modify',
+    authMW(objectRepository),
+    getMenuItemMW(objectRepository),
+    renderMW({}, 'add')
   );
 };

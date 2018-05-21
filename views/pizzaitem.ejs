@@ -8,9 +8,12 @@
     <td style="width: 50%">
         <%= pizza.description %>
     </td>
+    <td style="width: 50%">
+        $<%= pizza.price %>.00
+    </td>
     <td>
-    <button class="waves-effect waves-light btn right white-text">
+    <a class="waves-effect waves-light btn right white-text" href="<%= '/pizza/'+pizza._id +'/modify' %>">
         <i class="material-icons">add_shopping_cart</i>
-    </button>
+    </a>
     </td>
 </tr>

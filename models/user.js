@@ -6,7 +6,9 @@ var User = db.model('User', {
   email: String,
   address: String,
   phone: String,
-  password: String
+  password: String,
+  cart: [],
+  isAdmin: Boolean
 });
 
 module.exports = User;

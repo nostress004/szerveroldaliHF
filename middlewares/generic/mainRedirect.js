@@ -6,10 +6,10 @@
  */
 module.exports = function(objectrepository) {
   return function(req, res, next) {
-    if (typeof req.session.userid === 'undefined') {
-      return res.redirect('/login');
+    if (req.session && req.session.hasOwnProperty('user')) {
+      return res.redirect('/home');
     } else {
-      return res.redirect('/tasks');
+      return res.redirect('/login');
     }
   };
 };

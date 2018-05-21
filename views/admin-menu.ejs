@@ -4,11 +4,21 @@
             <table class="highlight" style="margin-top:50px; border-style: groove">
 
                 <tbody>
+                <% if (pizzas.length) {%>
                     <% pizzas.forEach(function(pizza) { %>
                         <% include adminpizzaitem %>
                             <% }); %>
+                <% } else{ %>
+                <h1> Please add some pizzas!</h1>   
+                <% } %>  
                 </tbody>
             </table>
+            
+            <div class="fixed-action-btn">
+                <a href="/add" class="btn-floating btn-large green">
+                    <i class="material-icons">add</i>
+                </a>
+            </div>
         </div>
     </main>
     <% include footer %>

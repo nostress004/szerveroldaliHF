@@ -1,0 +1,18 @@
+<% include header %>
+<main>
+    <div class="container">
+        <h4> Note: You can <b> remove</b> yourself from the database, or <b>take</b> your own admin rights!</h4>    
+        <table class="highlight" style="margin-top:50px; border-style: groove">
+            <tbody>
+                <% if (users.length) {%>
+                    <% users.forEach(function(user) { %>
+                        <% include adminuseritem %>
+                            <% }); %>
+                <% } else{ %>
+                <h1> Please add some users!</h1>   
+                <% } %>  
+            </tbody>
+        </table>
+    </div>
+</main>
+<% include footer %>

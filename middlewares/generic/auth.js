@@ -3,11 +3,11 @@
  */
 module.exports = function(objectrepository) {
   return function(req, res, next) {
-    if (typeof req.session.user._id === 'undefined') {
+    if (!req.session.hasOwnProperty('user')) {
       return res.redirect('/');
     }
 
-    res.tpl.loggedInUserId = req.session.user._id;
+    res.tpl.user = req.session.user;
     return next();
   };
 };
