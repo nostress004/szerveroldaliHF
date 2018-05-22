@@ -1,13 +1,17 @@
-const requireOption = require('../common').requireOption;
+var requireOption = require('../common').requireOption;
+const mongoose = require('mongoose');
 
 /**
- * Create (or update) pizza
+ * Load a pizza (if exists) with the :pizzaid param
+ * and redirect
  */
-module.exports = objectrepository => {
-  let pizzaModel = requireOption(objectrepository, 'pizzaModel');
+module.exports = function(objectrepository) {
+  var pizzaModel = requireOption(objectrepository, 'pizzaModel');
 
-  return (req, res, next) => {
+  return async function(req, res, next) {
+    console.log(req.params.pizzaid);
     if (
+      typeof req.body === 'undefined' ||
       typeof req.body.name === 'undefined' ||
       typeof req.body.description === 'undefined' ||
       typeof req.body.price === 'undefined'
@@ -15,21 +19,31 @@ module.exports = objectrepository => {
       return next();
     }
 
-    let pizza = undefined;
-    if (typeof res.tpl.pizza !== 'undefined') {
-      pizza = res.tpl.pizza;
-    } else {
-      pizza = new pizzaModel();
-    }
-    pizza.name = req.body.name;
-    pizza.description = req.body.description;
-    pizza.price = req.body.price;
+    var query = { _id: req.params.pizzaid };
 
-    pizza.save((err, result) => {
-      if (err) {
-        return next(err);
+    if (!query._id) {
+      query._id = new mongoose.mongo.ObjectID();
+    }
+
+    pizzaModel.findOneAndUpdate(
+      query,
+      {
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price
+      },
+      {
+        upsert: true
+      },
+      function(err, doc) {
+        if (err) return res.send(500, { error: err });
       }
-      return res.redirect('/admin-menu');
-    });
+    );
+
+    const resPizzas = await pizzaModel.find({});
+
+    res.tpl.pizzas = resPizzas || [];
+
+    return next();
   };
 };

@@ -7,7 +7,7 @@ module.exports = function(objectrepository, id) {
   let pizzaModel = requireOption(objectrepository, 'pizzaModel');
 
   return async function(req, res, next) {
-    const pizzas = await pizzaModel.find({ _id: req.params.id });
+    const pizzas = await pizzaModel.find({ _id: req.params.pizzaid });
     res.tpl.pizza = pizzas[0];
     return next();
   };
