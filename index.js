@@ -17,7 +17,7 @@ app.use(
   session({
     secret: 'dmpn24',
     cookie: {
-      maxAge: 60 * 1000
+      maxAge: 60 * 1000 * 10
     },
     resave: true,
     saveUninitialized: false

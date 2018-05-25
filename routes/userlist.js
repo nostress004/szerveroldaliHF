@@ -26,21 +26,27 @@ module.exports = function(app) {
     '/user/:userid/delete',
     authMW(objectRepository),
     deleteUserByIdMW(objectRepository),
-    renderMW({}, 'admin-userlist')
+    (req, res) => {
+      res.redirect('/users');
+    }
   );
 
   app.get(
     '/user/:userid/adminize',
     authMW(objectRepository),
     modifyUserRightsMW(objectRepository, true),
-    renderMW({}, 'admin-userlist')
+    (req, res) => {
+      res.redirect('/users');
+    }
   );
 
   app.get(
     '/user/:userid/userize',
     authMW(objectRepository),
     modifyUserRightsMW(objectRepository, false),
-    renderMW({}, 'admin-userlist')
+    (req, res) => {
+      res.redirect('/users');
+    }
   );
 
   app.get('/profile', authMW(objectRepository), renderMW({}, 'profile'));

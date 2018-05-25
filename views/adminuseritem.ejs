@@ -1,33 +1,42 @@
 <tr>
     <td style="width: 10%">
-        <%= user.name %>
+        <%= usertmp.name %>
     </td>
     <td style="width: 25%">
-        <%= user.email %>
+        <%= usertmp.email %>
     </td>
     <td style="width: 30%">
-        <%= user.address %>
+        <%= usertmp.address %>
     </td>
     <td style="width: 20%">
-        <%= user.phone %>
+        <%= usertmp.phone %>
     </td>
     <td style="width: 10%">
-    <% if (user.isAdmin) {%>
+    <% if (usertmp.isAdmin) {%>
         <b>Admin</b>
     <% } else{ %>
         <b>User</b>
     <% } %>
     </td>
+
+    <% if  (user._id.toString() !== usertmp._id.toString())  {%>
     <td style="width: 10%">
-        <a  class="waves-effect red btn" href="<%= '/user/'+user._id +'/delete' %>">Delete</a>
+        <a  class="waves-effect red btn" href="<%= '/user/'+usertmp._id +'/delete' %>">Delete</a>
     </td>
+    
     <td style="width: 10%">
-        <a  class="waves-effect purple btn" href="<%= user.isAdmin ? '/user/' + user._id +'/userize' : '/user/' + user._id +'/adminize' %>">
-        <% if (user.isAdmin) {%>
+        <a  class="waves-effect purple btn" href="<%= usertmp.isAdmin ? '/user/' + usertmp._id +'/userize' : '/user/' + usertmp._id +'/adminize' %>">
+        <% if (usertmp.isAdmin) {%>
                 <b>Userize</b>
             <% } else{ %>
                 <b>Adminize</b>
             <% } %>
         </a>
     </td>
+    <% } else { %>
+    <td>
+    </td>
+    <td>
+    </td>
+    <% } %>
 </tr>

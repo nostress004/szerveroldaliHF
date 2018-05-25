@@ -43,8 +43,10 @@ module.exports = function(app) {
   app.post(
     '/pizza/:pizzaid/modify',
     authMW(objectRepository),
-    getMenuItemMW(objectRepository),
-    renderMW({}, 'admin-menu')
+    updateMenuItemMW(objectRepository),
+    (req, res) => {
+      res.redirect('/admin-menu');
+    }
   );
 
   app.get(
@@ -58,6 +60,8 @@ module.exports = function(app) {
     '/pizza/:pizzaid/delete',
     authMW(objectRepository),
     deleteMenuItemMW(objectRepository),
-    renderMW({}, 'admin-menu')
+    (req, res) => {
+      res.redirect('/admin-menu');
+    }
   );
 };

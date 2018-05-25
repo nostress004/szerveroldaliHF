@@ -40,12 +40,14 @@
                 <li>
                     <a href="/menu">Menu</a>
                 </li>
-                <li>
-                    <a href="/admin-menu">Menu (Admin)</a>
-                </li>
-                <li>
-                    <a href="/users">Users (Admin)</a>
-                </li>
+                <% if (user.isAdmin) {%>
+                    <li>
+                        <a href="/admin-menu">Menu (Admin)</a>
+                    </li>
+                    <li>
+                        <a href="/users">Users (Admin)</a>
+                    </li>
+                <% } %>  
                 <li>    
                 <a href="/cart" class="waves-effect waves-light btn white-text" styles={{ margin: '20px' }}>
                     <i class="material-icons">shopping_cart</i>

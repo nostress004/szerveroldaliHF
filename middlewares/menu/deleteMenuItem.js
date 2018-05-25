@@ -16,5 +16,7 @@ module.exports = objectrepository => {
     const resPizzas = await pizzaModel.find({});
 
     res.tpl.pizzas = resPizzas || [];
+
+    return next();
   };
 };

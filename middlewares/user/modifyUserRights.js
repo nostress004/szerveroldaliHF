@@ -8,11 +8,12 @@ module.exports = function(objectrepository, userRight) {
   var userModel = requireOption(objectrepository, 'userModel');
 
   return async function(req, res, next) {
-    if (typeof res.tpl.user._id === 'undefined') {
+    if (typeof req.params.userid === 'undefined') {
       return next();
     }
+    var query = { _id: req.params.userid };
 
-    var query = { _id: res.tpl.user._id };
+    console.log(query);
     userModel.findOneAndUpdate(
       query,
       { isAdmin: userRight },
