@@ -1,23 +1,28 @@
 <% include header %>
-<main>
-<div class="container">
+  <main>
+    <div class="container">
+      <h4 class="center-align">
         <div class="card-panel red lighten-2 white-text center">
           <h4>Your cart</h4>
           <hr />
-          <br />
-          <h5>
-            Subtotal:<b> ${this.countPrice() || 0}.00</b>
-          </h5>
-          <br />
-          <br />
-         <button class="waves-effect waves-light btn white-text">
+          <a href="/order" class="waves-effect waves-light btn white-text">
             Order items
-          </button>
+          </a>
           <Payments amount={this.countPrice()} />
         </div>
-        <% user.cart.forEach(function(cartitem) { %>
-            <% include cartitem %>
-        <% }); %>
-</div>
-</main>
-<% include footer %>
+      </h4>
+      <table class="highlight" style="margin-top:50px; border-style: groove">
+
+        <tbody>
+          <% if (user.cart.length) {%>
+            <% user.cart.forEach(function(pizzatmp) { %>
+              <% include cartitem %>
+                <% }); %>
+                  <% } else{ %>
+                    <h1> Please place some orders</h1>
+                    <% } %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <% include footer %>

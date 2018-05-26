@@ -1,32 +1,62 @@
+const renderMW = require('../middlewares/generic/render');
+const authMW = require('../middlewares/generic/auth');
+const redirectMW = require('../middlewares/generic/mainRedirect');
+const checkUserLoginMW = require('../middlewares/user/checkUserLogin');
+const getOrderListMW = require('../middlewares/orders/getOrderList');
+const updateOrderMW = require('../middlewares/orders/updateOrder');
+const placeOrderMW = require('../middlewares/orders/placeOrder');
+const deleteOrderMW = require('../middlewares/orders/deleteOrder');
+const pizzaModel = require('../models/pizza');
+const userModel = require('../models/user');
+const orderModel = require('../models/order');
+
 module.exports = function(app) {
-  // /**
-  //  * Add new order
-  //  */
+  let objectRepository = {
+    orderModel,
+    pizzaModel,
+    userModel
+  };
 
-  // app.use('/order/new');
+  app.get(
+    '/orders',
+    authMW(objectRepository),
+    getOrderListMW(objectRepository),
+    renderMW({}, 'admin-orders')
+  );
 
-  // /**
-  //  * Edit the order details
-  //  */
+  app.get(
+    '/order',
+    authMW(objectRepository),
+    placeOrderMW(objectRepository),
+    (req, res) => {
+      res.redirect('/cart');
+    }
+  );
 
-  // app.use('/order/:orderid/edit');
+  app.get(
+    '/order/:orderid/deliver',
+    authMW(objectRepository),
+    updateOrderMW(objectRepository, 'delivered'),
+    (req, res) => {
+      res.redirect('/orders');
+    }
+  );
 
-  // /**
-  //  * Delete order
-  //  * - then redirect to /order
-  //  */
+  app.get(
+    '/order/:orderid/finish',
+    authMW(objectRepository),
+    updateOrderMW(objectRepository, 'finished'),
+    (req, res) => {
+      res.redirect('/orders');
+    }
+  );
 
-  // app.use('/order/:orderid/delete');
-
-  // /**
-  //  * List all orders (admin)
-  //  */
-
-  // app.use('/orders');
-
-  // /**
-  //  * List all orders (user)
-  //  */
-
-  // app.use('/myorders');
+  app.get(
+    '/order/:orderid/delete',
+    authMW(objectRepository),
+    deleteOrderMW(objectRepository),
+    (req, res) => {
+      res.redirect('/orders');
+    }
+  );
 };

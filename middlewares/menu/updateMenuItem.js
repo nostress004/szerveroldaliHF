@@ -9,8 +9,6 @@ module.exports = function(objectrepository) {
   var pizzaModel = requireOption(objectrepository, 'pizzaModel');
 
   return async function(req, res, next) {
-    console.log(req.params.pizzaid);
-    console.log('bodddyyy', req.body);
     if (
       typeof req.body === 'undefined' ||
       typeof req.body.name === 'undefined' ||

@@ -3,7 +3,6 @@
  */
 module.exports = function(objectrepository) {
   return function(req, res, next) {
-    console.log(req.session);
     if (req.session && req.session.hasOwnProperty('user')) {
       return res.redirect('/');
     }

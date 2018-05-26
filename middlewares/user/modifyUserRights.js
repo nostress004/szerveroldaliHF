@@ -13,7 +13,6 @@ module.exports = function(objectrepository, userRight) {
     }
     var query = { _id: req.params.userid };
 
-    console.log(query);
     userModel.findOneAndUpdate(
       query,
       { isAdmin: userRight },

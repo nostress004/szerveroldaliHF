@@ -1,9 +1,15 @@
+const requireOption = require('../common').requireOption;
 /**
- * Get order list
+ * get order list
  */
 
 module.exports = function(objectrepository) {
-  return function(req, res, next) {
+  let orderModel = requireOption(objectrepository, 'orderModel');
+
+  return async function(req, res, next) {
+    const orders = await orderModel.find({});
+
+    res.tpl.orders = orders;
     return next();
   };
 };

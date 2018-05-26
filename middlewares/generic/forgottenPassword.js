@@ -23,8 +23,8 @@ module.exports = objectrepository => {
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'felhasznalonevfoglalt89@gmail.com',
-          pass: 'ezcsakegyteszt'
+          user: 'szerveroldalihftestemail@gmail.com',
+          pass: 'Asddsa123'
         }
       });
 
@@ -40,7 +40,7 @@ module.exports = objectrepository => {
         if (error) {
           console.log(error);
         } else {
-          console.log('Email sent: ' + info.response);
+          console.log('It might take a while...e-mail sent: ' + info.response);
         }
       });
 

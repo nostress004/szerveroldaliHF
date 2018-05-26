@@ -1,17 +1,18 @@
 var Schema = require('mongoose').Schema;
 var db = require('../config/db');
 
-const userModel = require('../models/user');
+const pizzaModel = require('../models/pizza');
 
 var Order = db.model('Order', {
-  person: String,
-  date: {
-    type: Date,
-    // `Date.now()` returns the current unix timestamp as a number
-    default: Date.now
-  },
+  customerID: Schema.Types.ObjectId,
+  customerName: String,
+  customerAddress: String,
+  customerPhone: String,
+  customerEmail: String,
+  pizzas: [String],
   subtotal: Number,
-  status: String
+  status: { type: String, default: 'ordered' },
+  ordered: { type: Date, default: Date.now }
 });
 
 module.exports = Order;

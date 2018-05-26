@@ -1,20 +1,22 @@
 <% include header %>
-<!-- Register -->
-   <main>
-    <div class="container">
-        <table  class="highlight" style="margin-top:50px; border-style: groove">
-
-            <tbody>
-
-            <% if (pizzas.length) {%>
-                    <% pizzas.forEach(function(pizza) { %>
-                        <% include pizzaitem %>
-                            <% }); %>
-                <% } else{ %>
-                <h2> We don't have any pizzas currently,<br> please visit us later!</h2>   
-                <% } %> 
-            </tbody>
-        </table>
-    </div>
-</main>
-<% include footer %>
+    <!-- Register -->
+    <main>
+        <div class="container">
+            <h4 class="center-align">
+                <b> Menu</b>
+            </h4>
+            <table class="highlight" style="margin-top:50px; border-style: groove">
+                <tbody>
+                    <% if (pizzas.length) {%>
+                        <% pizzas.forEach(function(pizza) { %>
+                            <% include pizzaitem %>
+                                <% }); %>
+                                    <% } else{ %>
+                                        <h2> We don't have any pizzas currently,
+                                            <br> please visit us later!</h2>
+                                        <% } %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <% include footer %>

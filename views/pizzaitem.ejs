@@ -1,4 +1,4 @@
-<tr >
+<tr>
     <td style="width: 10%">
         <%= pizza.name %>
     </td>
@@ -9,11 +9,12 @@
         <%= pizza.description %>
     </td>
     <td style="width: 50%">
-        $<%= pizza.price %>.00
+        $
+        <%= pizza.price %>.00
     </td>
     <td>
-    <a class="waves-effect waves-light btn right white-text" href="<%= '/pizza/'+pizza._id +'/modify' %>">
-        <i class="material-icons">add_shopping_cart</i>
-    </a>
-</td>
+        <a class="waves-effect waves-light btn right white-text" href="<%= '/pizza/'+pizza._id +'/addtocart' %>">
+            <i class="material-icons">add_shopping_cart</i>
+        </a>
+    </td>
 </tr>

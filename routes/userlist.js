@@ -3,6 +3,7 @@ const authMW = require('../middlewares/generic/auth');
 const redirectMW = require('../middlewares/generic/mainRedirect');
 const getUserListMW = require('../middlewares/user/getUserList');
 const getUserByIdMW = require('../middlewares/user/getUserById');
+const getCartMW = require('../middlewares/user/getCart');
 const deleteUserByIdMW = require('../middlewares/user/deleteUserById');
 const modifyUserRightsMW = require('../middlewares/user/modifyUserRights');
 const modifyUserInfoMW = require('../middlewares/user/modifyUserInfo');
@@ -20,7 +21,12 @@ module.exports = function(app) {
     renderMW({}, 'admin-userlist')
   );
 
-  app.get('/cart', authMW(objectRepository), renderMW({}, 'cart'));
+  app.get(
+    '/cart',
+    authMW(objectRepository),
+    getCartMW(objectRepository),
+    renderMW({}, 'cart')
+  );
 
   app.get(
     '/user/:userid/delete',

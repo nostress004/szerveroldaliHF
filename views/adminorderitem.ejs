@@ -1,0 +1,44 @@
+<tr>
+    <td style="width: 10%">
+        <%= order.customerName %>
+    </td>
+
+    <td style="width: 20%">
+        <img src="images/220px-Eq_it-na_pizza-margherita_sep2005_sml.jpg">
+    </td>
+
+    <td style="width: 50%">
+        <%= order.customerAddress %>
+    </td>
+
+    <td style="width: 10%">
+        <%= order.customerPhone %>
+    </td>
+
+    <td style="width: 50%">
+        $
+        <%= order.subtotal %>.00
+    </td>
+
+    <td style="width: 50%">
+        Status:
+        <%= order.status %>
+    </td>
+
+
+    <td style="width: 10%">
+        <a class="waves-effect red btn" href="<%= '/order/' + order._id +'/delete' %>">Delete</a>
+    </td>
+
+    <td style="width: 10%">
+        <a class="waves-effect purple btn" href="<%= order.status === 'ordered' ? '/order/' + order._id +'/deliver' : '/order/' + order._id +'/finish' %>">
+            <% if (order.status === 'ordered') {%>
+                <b>Deliver</b>
+                <% } else{ %>
+                    <b>Finish</b>
+                    <% } %>
+        </a>
+
+</tr>
+
+</td>

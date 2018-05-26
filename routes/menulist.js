@@ -4,16 +4,19 @@ const redirectMW = require('../middlewares/generic/mainRedirect');
 const checkUserLoginMW = require('../middlewares/user/checkUserLogin');
 const updateMenuItemMW = require('../middlewares/menu/updateMenuItem');
 const getMenuListMW = require('../middlewares/menu/getMenuList');
+const pizzaToCartMW = require('../middlewares/menu/pizzaToCart');
 const getMenuItemMW = require('../middlewares/menu/getMenuItem');
 const deleteMenuItemMW = require('../middlewares/menu/deleteMenuItem');
-// mock data
-const data = require('../mockData/data');
 
 const pizzaModel = require('../models/pizza');
+const userModel = require('../models/user');
+const orderModel = require('../models/order');
 
 module.exports = function(app) {
   let objectRepository = {
-    pizzaModel
+    pizzaModel,
+    userModel,
+    orderModel
   };
 
   app.get(
@@ -62,6 +65,15 @@ module.exports = function(app) {
     deleteMenuItemMW(objectRepository),
     (req, res) => {
       res.redirect('/admin-menu');
+    }
+  );
+
+  app.get(
+    '/pizza/:pizzaid/addtocart',
+    authMW(objectRepository),
+    pizzaToCartMW(objectRepository),
+    (req, res) => {
+      res.redirect('/menu');
     }
   );
 };
